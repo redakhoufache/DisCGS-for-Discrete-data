@@ -2,6 +2,11 @@
 
 This code performs the distributed inference for Multinomial Dirichlet Process Mixture Model inference.
 
+### Requirements
+
+* Scala 2.13.0
+* Spark 3.3.0
+
 ### Building
 
 The script build.sh is provided to build an executable jar containing all the dependencies. 
