@@ -6,7 +6,7 @@ This code performs the distributed inference for Multinomial Dirichlet Process M
 
 * Scala 2.13.0
 * Spark 3.3.0
-* 
+  
 See src/pom.xml file for Scala and Spark dependencies.
 
 ### Building
