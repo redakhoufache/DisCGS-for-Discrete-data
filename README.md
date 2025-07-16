@@ -1,10 +1,6 @@
 # DisCGS
-This repository contains our implementation of the distributed collapsed Gibbs sampler for Dirichlet Process Mixture Model inference, proposed in the paper *"Distributed Collapsed Gibbs Sampler for Dirichlet Process Mixture Models in Federated Learning"* (Accepted to SIAM International Conference on Data Mining (SDM24)).
 
-### Requirements
-
-* Scala 2.13.0
-* Spark 3.3.0
+This code performs the distributed inference for Multinomial Dirichlet Process Mixture Model inference.
 
 ### Building
 
@@ -20,36 +16,26 @@ See src/pom.xml file for Scala and spark dependencies.
 In order to run the built jar use the following code:
 
 ```
-scala -J-Xmx1024m target/DisDPMM_2.13-1.0-jar-with-dependencies.jar <dataset name> <number of workers> <number of runs> <compute the log-likelihood>
+scala -J-Xmx1024m target/DisDPMM_2.13-1.0-jar-with-dependencies.jar <dataset name> <gamma> <number of iterations> <if distributed> <number of workers>
 ```
 
 Example of execution:
 
 ```
-scala -J-Xmx1024m target/DisDPMM_2.13-1.0-jar-with-dependencies.jar EngyTime_4096_2_2 2 1 True
+scala -J-Xmx1024m target/DisDPMM_2.13-1.0-jar-with-dependencies.jar Tweet 0.02 10 true 2
 ```
-The above code will perform  1 run on EngyTime dataset using 2 workers and will compute the log-likelihood.
+The above code will run DisCGS for  10 iterations on Tweet dataset using 2 workers.
 
 The datasets used in the paper are provided in dataset file.
 
-The program will output the runtime, ARI, NMI, the number of inferred clusters, and the likelihood if computed:
+The program will output the runtime (in seconds), ARI, NMI and the number of inferred clusters:
 
 ```
->>>>>> Launch: 0
-Runtime: 28.70232966
-ARI: 0.9960966096302842
-NMI: 0.9883973976898691
-Number of inferred clusters: 2
-Log-likelihood: -14915.09659745419
+Results:
+ARI               : 0.673
+NMI               : 0.857
+Inferred clusters : 107
+Gamma             : 0.02
+True clusters     : 89
+Running time      : 3.641
 ```
-
-### Visualization
-
-![Clusters visualization](figure.png)
-
-
-### Analyse all results
-
-A jupyter notebook is provided to analyse all the results.
-
-Please go to results file and open the notebook AnalyseResults.ipynb and execute the cells to see the results.
